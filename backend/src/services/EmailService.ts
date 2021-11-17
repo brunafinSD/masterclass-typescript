@@ -9,15 +9,18 @@ interface IMailMessage{
     attachment?: string[];
 }
 
-interface MessageDTO{
+interface IMessageDTO{
+    //DTO: Data Transfer Object
     to: IMailTo;
     message: IMailMessage;
 }
 
-//DTO: Data Transfer Object
+interface IEmailService{
+    sendMail(resquest: IMessageDTO): void;
+}
 
-class EmailService{
-    sendMail({ to, message }: MessageDTO){
+class EmailService implements IEmailService{
+    sendMail({ to, message }: IMessageDTO){
         console.log(`Email enviado para: ${to.name}: ${message.subject}`);
     }
 }
